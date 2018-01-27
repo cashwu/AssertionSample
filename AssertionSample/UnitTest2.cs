@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 namespace AssertionSample
@@ -18,9 +19,11 @@ namespace AssertionSample
         public void Divide_Zero()
         {
             var calculator = new Calculator();
-            var actual = calculator.Divide(5, 0);
+            //var actual = calculator.Divide(5, 0);
 
             //how to assert expected exception?
+            Action action = () => calculator.Divide(5, 0);
+            action.ShouldThrow<YouShallNotPassException>();
         }
     }
 
